@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>신다은 &amp; 윤재림 · 두 사람의 여정</title>
+
+  <meta property="og:title" content="신다은 & 윤재림 · 두 사람의 여정">
+  <meta property="og:description" content="2027년 10월 10일 일요일 낮 12시, 새로운 여정이 시작됩니다">
+  <meta property="og:image" content="https://yunjeremy.github.io/wedding_invitation_1/images/main.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=IM+Fell+English:ital@0;1&family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --night: #0d0b08;
+      --leather: #2a1d12;
+      --parch: #efe2c4;
+      --parch-dark: #d9c497;
+      --ink: #3b2a1a;
+      --ink-soft: #6b5640;
+      --gold: #c9a227;
+      --gold-light: #f3d77a;
+      --gold-deep: #8a6a12;
+      --wax: #8e1b1b;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: radial-gradient(ellipse at center, #1b140d 0%, #070605 100%) fixed;
+      font-family: 'Nanum Myeongjo', serif;
+      color: var(--ink);
+      line-height: 1.95;
+      word-break: keep-all;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap {
+      max-width: 430px; margin: 0 auto; position: relative; overflow: hidden;
+      background:
+        radial-gradient(ellipse at 20% 10%, rgba(255,255,255,.35), transparent 50%),
+        radial-gradient(ellipse at 80% 70%, rgba(120,80,30,.15), transparent 55%),
+        radial-gradient(ellipse at center, var(--parch) 55%, var(--parch-dark) 100%);
+      box-shadow: 0 0 60px rgba(0,0,0,.8);
+    }
+    .wrap::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 1;
+      box-shadow: inset 0 0 70px rgba(90,55,20,.45);
+    }
+
+    section { padding: 70px 28px; text-align: center; position: relative; z-index: 2; }
+
+    .eng { font-family: 'Cinzel', serif; letter-spacing: .3em; font-size: 12px; color: var(--gold-deep); }
+    .chapter {
+      font-family: 'Cinzel Decorative', serif; font-size: 13px; letter-spacing: .25em;
+      color: var(--gold-deep); margin-bottom: 6px;
+    }
+    .title { font-size: 24px; font-weight: 800; color: var(--ink); margin-bottom: 8px; }
+
+    /* 장식 구분선 */
+    .ornament { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 18px auto 34px; color: var(--gold-deep); }
+    .ornament::before, .ornament::after { content: ''; width: 70px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-deep), transparent); }
+    .ornament span { font-size: 14px; }
+
+    .fade { opacity: 0; transform: translateY(26px); filter: blur(3px); transition: opacity 1.4s ease, transform 1.4s ease, filter 1.4s ease; }
+    .fade.show { opacity: 1; transform: none; filter: none; }
+
+    /* ---------- 오프닝 (밤하늘 + 금빛 반지) ---------- */
+    .hero {
+      min-height: 680px; padding: 70px 24px 60px;
+      background: radial-gradient(ellipse at 50% 38%, #3a2a14 0%, #15100a 45%, #070605 100%);
+      color: var(--parch);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+    }
+    .hero::after {
+      content: ''; position: absolute; left: 0; right: 0; bottom: -1px; height: 90px;
+      background: linear-gradient(transparent, var(--parch));
+    }
+    .stars { position: absolute; inset: 0; pointer-events: none; }
+    .stars i { position: absolute; width: 2px; height: 2px; background: #fff6d8; border-radius: 50%; animation: twinkle 3s ease-in-out infinite; }
+    @keyframes twinkle { 50% { opacity: .15; } }
+
+    .hero .eng { color: var(--gold); opacity: 0; animation: rise 2s .4s ease forwards; }
+
+    .ring-box { position: relative; width: 190px; height: 190px; margin: 34px 0 30px; opacity: 0; animation: rise 2.4s .9s ease forwards; }
+    .ring-glow {
+      position: absolute; inset: -40px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(243,215,122,.45) 0%, rgba(201,162,39,.15) 40%, transparent 70%);
+      animation: pulse 4s ease-in-out infinite;
+    }
+    @keyframes pulse { 50% { transform: scale(1.12); opacity: .7; } }
+    .ring {
+      position: absolute; inset: 22px; border-radius: 50%;
+      background: conic-gradient(from 0deg, #8a6a12, #f3d77a, #c9a227, #fff3c0, #a07c18, #f3d77a, #8a6a12);
+      -webkit-mask: radial-gradient(circle, transparent 58%, #000 59%, #000 70%, transparent 71%);
+              mask: radial-gradient(circle, transparent 58%, #000 59%, #000 70%, transparent 71%);
+      animation: spin 14s linear infinite;
+      filter: drop-shadow(0 0 12px rgba(243,215,122,.8));
+    }
+    .ring.r2 { inset: 46px; animation-direction: reverse; animation-duration: 18s; opacity: .85; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .hero-names {
+      font-size: 30px; font-weight: 800; letter-spacing: .12em; color: var(--gold-light);
+      text-shadow: 0 0 18px rgba(243,215,122,.45), 0 2px 0 #000;
+      opacity: 0; animation: rise 2s 1.6s ease forwards;
+    }
+    .hero-names .amp { font-family: 'Cinzel Decorative', serif; font-size: 24px; color: var(--gold); margin: 0 10px; }
+    .hero-sub {
+      font-family: 'IM Fell English', serif; font-style: italic; font-size: 18px; color: var(--parch-dark);
+      margin-top: 8px; opacity: 0; animation: rise 2s 2.1s ease forwards;
+    }
+    .hero-date {
+      font-family: 'Cinzel', serif; letter-spacing: .25em; font-size: 14px; color: var(--parch);
+      margin-top: 26px; padding: 10px 22px; border-top: 1px solid var(--gold-deep); border-bottom: 1px solid var(--gold-deep);
+      opacity: 0; animation: rise 2s 2.5s ease forwards;
+    }
+    .hero-place { font-size: 14px; color: var(--parch-dark); margin-top: 12px; opacity: 0; animation: rise 2s 2.8s ease forwards; }
+    @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+
+    /* ---------- Chapter I : 서신 ---------- */
+    .letter { text-align: left; font-size: 15.5px; }
+    .dropcap::first-letter {
+      float: left; font-family: 'Cinzel Decorative', serif; font-size: 52px; line-height: .9;
+      color: var(--wax); padding: 6px 10px 0 0;
+    }
+    .parents { margin-top: 34px; text-align: center; font-size: 15.5px; line-height: 2.2; }
+    .parents b { font-size: 17px; font-weight: 800; margin-left: 6px; }
+    .parents .rel { color: var(--ink-soft); font-size: 13px; margin: 0 3px; }
+
+    /* ---------- Chapter II : 달력 ---------- */
+    .cal-frame {
+      border: 1px solid var(--gold-deep); outline: 1px solid var(--gold-deep); outline-offset: 5px;
+      padding: 26px 16px; background: rgba(255,250,235,.35);
+    }
+    .cal-head { font-family: 'Cinzel', serif; letter-spacing: .3em; color: var(--ink-soft); font-size: 13px; margin-bottom: 14px; }
+    .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); row-gap: 6px; font-size: 14px; }
+    .cal-grid .dow { font-family: 'Cinzel', serif; font-size: 11px; color: var(--ink-soft); padding-bottom: 6px; }
+    .cal-grid .sun { color: var(--wax); }
+    .cal-grid .day { height: 34px; display: flex; align-items: center; justify-content: center; }
+    .cal-grid .wedding span {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #b83434, var(--wax) 60%, #5a0f0f);
+      color: #f8e7c8; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,.35);
+    }
+
+    .seal-wrap { margin-top: 40px; display: flex; flex-direction: column; align-items: center; }
+    .seal {
+      width: 130px; height: 130px; border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #b83434 0%, var(--wax) 55%, #4d0c0c 100%);
+      box-shadow: 0 6px 14px rgba(0,0,0,.35), inset 0 0 0 8px rgba(0,0,0,.12), inset 0 0 0 10px rgba(255,255,255,.08);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      color: #f6dcae; position: relative;
+    }
+    .seal::before { content: ''; position: absolute; inset: 14px; border: 1px dashed rgba(246,220,174,.5); border-radius: 50%; }
+    .seal .d { font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: .2em; }
+    .seal .n { font-family: 'Cinzel Decorative', serif; font-size: 30px; font-weight: 700; line-height: 1.1; }
+    .timer { display: flex; gap: 18px; margin-top: 22px; font-family: 'Cinzel', serif; }
+    .timer div { text-align: center; }
+    .timer .num { font-size: 22px; color: var(--ink); }
+    .timer .lbl { font-size: 10px; letter-spacing: .2em; color: var(--ink-soft); }
+    .dday-msg { margin-top: 18px; font-size: 15px; }
+    .dday-msg b { color: var(--wax); }
+
+    /* ---------- Chapter III : 갤러리 ---------- */
+    .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .gallery .item {
+      aspect-ratio: 1; cursor: pointer; overflow: hidden; padding: 4px;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold-deep));
+      box-shadow: 0 3px 8px rgba(60,40,10,.35);
+    }
+    .gallery .item div { width: 100%; height: 100%; background: #cdb68a; overflow: hidden; }
+    .gallery .item img { width: 100%; height: 100%; object-fit: cover; display: block; filter: sepia(.15); }
+
+    .lightbox {
+      position: fixed; inset: 0; background: rgba(8,6,4,.95);
+      display: none; align-items: center; justify-content: center; z-index: 100;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 88vw; max-height: 76vh; border: 6px solid var(--gold); }
+    .lightbox .ph-big { width: 80vw; max-width: 360px; aspect-ratio: 3/4; background: #cdb68a; border: 6px solid var(--gold); }
+    .lb-btn { position: absolute; background: none; border: none; color: var(--gold-light); font-size: 30px; padding: 14px; cursor: pointer; font-family: 'Cinzel', serif; }
+    .lb-close { top: 10px; right: 10px; }
+    .lb-prev { left: 4px; top: 50%; transform: translateY(-50%); }
+    .lb-next { right: 4px; top: 50%; transform: translateY(-50%); }
+    .lb-count { position: absolute; bottom: 24px; color: var(--parch-dark); font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: .2em; }
+
+    /* ---------- Chapter IV : 지도 ---------- */
+    .place-name { font-size: 20px; font-weight: 800; }
+    .place-sub { color: var(--ink-soft); font-size: 14px; }
+    .map-frame { margin-top: 22px; position: relative; padding: 8px; border: 1px solid var(--gold-deep); background: rgba(255,250,235,.3); }
+    .map {
+      width: 100%; aspect-ratio: 4 / 3; background: #e6d4ac;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--ink-soft); font-size: 14px;
+    }
+    .compass {
+      position: absolute; right: -12px; top: -16px; width: 56px; height: 56px; border-radius: 50%;
+      background: var(--parch); border: 1px solid var(--gold-deep);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cinzel', serif; font-size: 11px; color: var(--wax);
+    }
+    .compass::before {
+      content: ''; position: absolute; width: 10px; height: 40px;
+      background: linear-gradient(var(--wax) 50%, var(--ink) 50%);
+      clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+    }
+    .compass span { position: absolute; top: -1px; }
+
+    .nav-btns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 14px; }
+    .btn {
+      display: block; text-align: center; padding: 11px 0; cursor: pointer;
+      background: var(--leather); color: var(--gold-light); text-decoration: none;
+      border: 1px solid var(--gold-deep); font-family: inherit; font-size: 14px;
+      box-shadow: inset 0 0 0 3px var(--leather), inset 0 0 0 4px rgba(201,162,39,.5);
+    }
+    .btn:active { filter: brightness(1.2); }
+    .route { margin-top: 28px; text-align: left; font-size: 14.5px; }
+    .route dt { font-family: 'Cinzel', serif; letter-spacing: .15em; color: var(--wax); margin-top: 14px; font-size: 14px; }
+    .route dt::before { content: '❖ '; color: var(--gold-deep); }
+
+    /* ---------- Chapter V : 계좌 ---------- */
+    .acc-desc { font-size: 14.5px; color: var(--ink-soft); margin-bottom: 26px; }
+    .acc { margin-bottom: 14px; text-align: left; }
+    .acc-toggle { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; }
+    .acc-toggle .arrow { transition: transform .3s; }
+    .acc.open .arrow { transform: rotate(180deg); }
+    .acc-body { max-height: 0; overflow: hidden; transition: max-height .5s ease; }
+    .acc.open .acc-body { max-height: 400px; }
+    .acc-inner { border: 1px solid var(--gold-deep); border-top: none; background: rgba(255,250,235,.5); }
+    .acc-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 14px 16px; font-size: 14px; }
+    .acc-row + .acc-row { border-top: 1px dashed var(--gold-deep); }
+    .acc-row .who { color: var(--ink-soft); font-size: 12.5px; }
+    .copy-btn { flex-shrink: 0; padding: 6px 12px; font-size: 13px; }
+
+    /* ---------- Epilogue ---------- */
+    .share { display: grid; gap: 12px; }
+    .share .btn { padding: 15px 0; font-size: 15px; }
+    .btn-kakao { background: #fee500 !important; color: #191919 !important; box-shadow: none !important; border-color: #c9b200 !important; }
+    .epilogue { margin-top: 40px; font-family: 'IM Fell English', serif; font-style: italic; font-size: 19px; color: var(--ink-soft); }
+    .epilogue-ko { font-size: 15px; margin-top: 6px; }
+
+    footer { padding: 26px 0 60px; text-align: center; font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: .3em; color: var(--ink-soft); position: relative; z-index: 2; }
+
+    .toast {
+      position: fixed; left: 50%; bottom: 40px; transform: translateX(-50%) translateY(20px);
+      background: var(--leather); color: var(--gold-light); border: 1px solid var(--gold);
+      padding: 10px 22px; font-size: 14px; opacity: 0; transition: all .3s; pointer-events: none; z-index: 200;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* ---------- 떠오르는 금빛 불씨 ---------- */
+    .ember {
+      position: fixed; bottom: -10px; width: 4px; height: 4px; border-radius: 50%;
+      background: radial-gradient(circle, #fff3c0, #f3a93a 60%, transparent 70%);
+      box-shadow: 0 0 6px 2px rgba(243,180,70,.6);
+      pointer-events: none; z-index: 50; animation: ember linear forwards;
+    }
+    @keyframes ember {
+      0% { transform: translate(0, 0); opacity: 0; }
+      10% { opacity: 1; }
+      100% { transform: translate(var(--drift), -105vh); opacity: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ember, .stars { display: none; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .fade, .hero * { opacity: 1 !important; transform: none !important; filter: none !important; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ===== 오프닝 ===== -->
+  <section class="hero">
+    <div class="stars" id="stars"></div>
+    <p class="eng">THE JOURNEY BEGINS</p>
+    <div class="ring-box">
+      <div class="ring-glow"></div>
+      <div class="ring"></div>
+      <div class="ring r2"></div>
+    </div>
+    <p class="hero-names">다은<span class="amp">&amp;</span>재림</p>
+    <p class="hero-sub">Two paths become one</p>
+    <p class="hero-date">MMXXVII · X · X</p>
+    <p class="hero-place">2027년 10월 10일 일요일 낮 12시<br>○○웨딩홀 ○층 ○○홀</p>
+  </section>
+
+  <!-- ===== Chapter I ===== -->
+  <section class="fade">
+    <p class="chapter">Chapter I</p>
+    <p class="title">초대의 서신</p>
+    <div class="ornament"><span>❦</span></div>
+    <div class="letter">
+      <p class="dropcap">
+        서로 다른 길을 걸어온 두 사람이 마침내 같은 길 위에서 만났습니다.
+        이제 남은 여정을 함께 걸어가려 합니다.
+      </p><br>
+      <p>
+        저희의 새로운 여정이 시작되는 날,
+        귀한 걸음으로 함께해 주시어
+        앞길을 축복해 주시면 더없는 기쁨으로 간직하겠습니다.
+      </p>
+    </div>
+    <div class="parents">
+      <p>○○○ · ○○○<span class="rel">의 아들</span><b>○○</b></p>
+      <p>○○○ · ○○○<span class="rel">의 딸</span><b>○○</b></p>
+    </div>
+  </section>
+
+  <!-- ===== Chapter II ===== -->
+  <section class="fade">
+    <p class="chapter">Chapter II</p>
+    <p class="title">약속의 날</p>
+    <div class="ornament"><span>✦</span></div>
+    <div class="cal-frame">
+      <p class="cal-head">OCTOBER · MMXXVII</p>
+      <div class="cal-grid" id="calendar"></div>
+    </div>
+
+    <div class="seal-wrap">
+      <div class="seal">
+        <p class="d">D A Y S</p>
+        <p class="n" id="cd-d">0</p>
+      </div>
+      <div class="timer" id="timer">
+        <div><p class="num" id="cd-h">00</p><p class="lbl">HOURS</p></div>
+        <div><p class="num" id="cd-m">00</p><p class="lbl">MIN</p></div>
+        <div><p class="num" id="cd-s">00</p><p class="lbl">SEC</p></div>
+      </div>
+      <p class="dday-msg" id="dday"></p>
+    </div>
+  </section>
+
+  <!-- ===== Chapter III ===== -->
+  <section class="fade">
+    <p class="chapter">Chapter III</p>
+    <p class="title">지나온 날들의 기록</p>
+    <div class="ornament"><span>❧</span></div>
+    <!-- images/1.jpg ~ 9.jpg -->
+    <div class="gallery" id="gallery"></div>
+  </section>
+
+  <!-- ===== Chapter IV ===== -->
+  <section class="fade">
+    <p class="chapter">Chapter IV</p>
+    <p class="title">여정의 지도</p>
+    <div class="ornament"><span>✧</span></div>
+    <p class="place-name">○○웨딩홀 ○층 ○○홀</p>
+    <p class="place-sub">서울특별시 ○○구 ○○로 123</p>
+    <p class="place-sub">Tel. 02-000-0000</p>
+
+    <div class="map-frame">
+      <!-- 다음 단계에서 카카오 지도를 연결합니다 -->
+      <div class="map" id="map">지도 영역</div>
+      <div class="compass"><span>N</span></div>
+    </div>
+
+    <div class="nav-btns">
+      <a class="btn" href="#" id="nav-kakao">카카오맵</a>
+      <a class="btn" href="#" id="nav-naver">네이버지도</a>
+      <a class="btn" href="#" id="nav-tmap">티맵</a>
+    </div>
+
+    <dl class="route">
+      <dt>SUBWAY</dt><dd>○호선 ○○역 ○번 출구 도보 5분</dd>
+      <dt>BUS</dt><dd>○○○, ○○○번 ○○정류장 하차</dd>
+      <dt>PARKING</dt><dd>건물 지하 주차장 2시간 무료</dd>
+    </dl>
+  </section>
+
+  <!-- ===== Chapter V ===== -->
+  <section class="fade">
+    <p class="chapter">Chapter V</p>
+    <p class="title">마음 전하실 곳</p>
+    <div class="ornament"><span>❦</span></div>
+    <p class="acc-desc">참석이 어려우신 분들을 위해<br>계좌번호를 기재하였습니다.</p>
+
+    <div class="acc">
+      <button class="btn acc-toggle">신랑측 계좌번호 <span class="arrow">▾</span></button>
+      <div class="acc-body"><div class="acc-inner">
+        <div class="acc-row">
+          <div><p class="who">신랑</p><p>○○은행 000-0000-0000</p><p class="who">예금주 ○○○</p></div>
+          <button class="btn copy-btn" data-copy="○○은행 000-0000-0000">복사</button>
+        </div>
+        <div class="acc-row">
+          <div><p class="who">신랑 아버지</p><p>○○은행 000-0000-0000</p><p class="who">예금주 ○○○</p></div>
+          <button class="btn copy-btn" data-copy="○○은행 000-0000-0000">복사</button>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="acc">
+      <button class="btn acc-toggle">신부측 계좌번호 <span class="arrow">▾</span></button>
+      <div class="acc-body"><div class="acc-inner">
+        <div class="acc-row">
+          <div><p class="who">신부</p><p>○○은행 000-0000-0000</p><p class="who">예금주 ○○○</p></div>
+          <button class="btn copy-btn" data-copy="○○은행 000-0000-0000">복사</button>
+        </div>
+        <div class="acc-row">
+          <div><p class="who">신부 아버지</p><p>○○은행 000-0000-0000</p><p class="who">예금주 ○○○</p></div>
+          <button class="btn copy-btn" data-copy="○○은행 000-0000-0000">복사</button>
+        </div>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- ===== Epilogue ===== -->
+  <section class="fade">
+    <p class="chapter">Epilogue</p>
+    <p class="title">함께 걸어주세요</p>
+    <div class="ornament"><span>✦</span></div>
+    <div class="share">
+      <!-- 다음 단계에서 카카오톡 공유 SDK를 연결합니다 -->
+      <button class="btn btn-kakao" id="share-kakao">카카오톡으로 공유하기</button>
+      <button class="btn" id="share-link">청첩장 주소 복사하기</button>
+    </div>
+    <p class="epilogue">And so the journey continues…</p>
+    <p class="epilogue-ko">여정은 이제부터 시작입니다</p>
+  </section>
+
+  <footer>DAEUN · JAERIM · MMXXVII</footer>
+</div>
+
+<div class="lightbox" id="lightbox">
+  <button class="lb-btn lb-close" id="lb-close" aria-label="닫기">✕</button>
+  <button class="lb-btn lb-prev" id="lb-prev" aria-label="이전">‹</button>
+  <div id="lb-content"></div>
+  <button class="lb-btn lb-next" id="lb-next" aria-label="다음">›</button>
+  <p class="lb-count" id="lb-count"></p>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  // ===== 기본 설정 =====
+  const WEDDING = new Date(2027, 9, 10, 12, 0, 0); // 월은 0부터: 9 = 10월
+  const GALLERY_COUNT = 9;
+
+  // ===== 밤하늘 별 =====
+  const stars = document.getElementById('stars');
+  for (let i = 0; i < 60; i++) {
+    const s = document.createElement('i');
+    s.style.left = Math.random() * 100 + '%';
+    s.style.top = Math.random() * 80 + '%';
+    s.style.animationDelay = Math.random() * 3 + 's';
+    s.style.opacity = .3 + Math.random() * .7;
+    stars.appendChild(s);
+  }
+
+  // ===== 토스트 & 복사 =====
+  const toastEl = document.getElementById('toast');
+  function toast(msg) {
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    clearTimeout(toastEl._t);
+    toastEl._t = setTimeout(() => toastEl.classList.remove('show'), 1800);
+  }
+  async function copyText(text) {
+    try { await navigator.clipboard.writeText(text); }
+    catch (e) {
+      const ta = document.createElement('textarea');
+      ta.value = text; document.body.appendChild(ta);
+      ta.select(); document.execCommand('copy'); ta.remove();
+    }
+    toast('복사되었습니다');
+  }
+
+  // ===== 달력 =====
+  (function buildCalendar() {
+    const cal = document.getElementById('calendar');
+    const y = WEDDING.getFullYear(), m = WEDDING.getMonth(), d = WEDDING.getDate();
+    ['SUN','MON','TUE','WED','THU','FRI','SAT'].forEach((w, i) => {
+      cal.insertAdjacentHTML('beforeend', `<div class="dow ${i === 0 ? 'sun' : ''}">${w}</div>`);
+    });
+    const first = new Date(y, m, 1).getDay();
+    const last = new Date(y, m + 1, 0).getDate();
+    for (let i = 0; i < first; i++) cal.insertAdjacentHTML('beforeend', '<div></div>');
+    for (let day = 1; day <= last; day++) {
+      const isSun = (first + day - 1) % 7 === 0;
+      cal.insertAdjacentHTML('beforeend',
+        `<div class="day ${isSun ? 'sun' : ''} ${day === d ? 'wedding' : ''}"><span>${day}</span></div>`);
+    }
+  })();
+
+  // ===== 카운트다운 =====
+  function tick() {
+    const diff = WEDDING - new Date();
+    const msg = document.getElementById('dday');
+    if (diff <= 0) {
+      document.getElementById('timer').style.display = 'none';
+      document.getElementById('cd-d').textContent = '0';
+      msg.innerHTML = '여정이 시작되었습니다. <b>함께해 주셔서 감사합니다</b>';
+      return;
+    }
+    const days = Math.floor(diff / 86400000);
+    const pad = n => String(n).padStart(2, '0');
+    document.getElementById('cd-d').textContent = days;
+    document.getElementById('cd-h').textContent = pad(Math.floor(diff / 3600000) % 24);
+    document.getElementById('cd-m').textContent = pad(Math.floor(diff / 60000) % 60);
+    document.getElementById('cd-s').textContent = pad(Math.floor(diff / 1000) % 60);
+    msg.innerHTML = `두 사람의 여정이 시작되기까지 <b>D-${days + 1}</b>`;
+  }
+  tick(); setInterval(tick, 1000);
+
+  // ===== 갤러리 =====
+  const gallery = document.getElementById('gallery');
+  const photos = [];
+  for (let i = 1; i <= GALLERY_COUNT; i++) {
+    const src = `images/${i}.jpg`;
+    photos.push(src);
+    gallery.insertAdjacentHTML('beforeend',
+      `<div class="item" data-i="${i - 1}"><div><img src="${src}" alt="사진 ${i}" loading="lazy" onerror="this.remove()"></div></div>`);
+  }
+  const lb = document.getElementById('lightbox');
+  const lbContent = document.getElementById('lb-content');
+  let cur = 0;
+  function showPhoto(i) {
+    cur = (i + photos.length) % photos.length;
+    lbContent.innerHTML = `<img src="${photos[cur]}" alt="" onerror="this.outerHTML='<div class=&quot;ph-big&quot;></div>'">`;
+    document.getElementById('lb-count').textContent = `${cur + 1} / ${photos.length}`;
+  }
+  gallery.addEventListener('click', e => {
+    const item = e.target.closest('.item');
+    if (!item) return;
+    showPhoto(+item.dataset.i);
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
+  function closeLb() { lb.classList.remove('open'); document.body.style.overflow = ''; }
+  document.getElementById('lb-close').onclick = closeLb;
+  document.getElementById('lb-prev').onclick = e => { e.stopPropagation(); showPhoto(cur - 1); };
+  document.getElementById('lb-next').onclick = e => { e.stopPropagation(); showPhoto(cur + 1); };
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  let sx = 0;
+  lb.addEventListener('touchstart', e => sx = e.touches[0].clientX, { passive: true });
+  lb.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - sx;
+    if (Math.abs(dx) > 50) showPhoto(cur + (dx < 0 ? 1 : -1));
+  });
+
+  // ===== 계좌 / 공유 =====
+  document.querySelectorAll('.acc-toggle').forEach(btn => {
+    btn.onclick = () => btn.parentElement.classList.toggle('open');
+  });
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.onclick = () => copyText(btn.dataset.copy);
+  });
+  document.getElementById('share-link').onclick = () => copyText(location.href);
+  document.getElementById('share-kakao').onclick = () => toast('카카오톡 공유는 다음 단계에서 연결됩니다');
+
+  // ===== 스크롤 등장 =====
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('show'); io.unobserve(en.target); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.fade').forEach(el => io.observe(el));
+
+  // ===== 떠오르는 금빛 불씨 =====
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    setInterval(() => {
+      const e = document.createElement('div');
+      e.className = 'ember';
+      e.style.left = Math.random() * 100 + 'vw';
+      const s = 2 + Math.random() * 4;
+      e.style.width = e.style.height = s + 'px';
+      e.style.setProperty('--drift', (Math.random() * 100 - 50) + 'px');
+      e.style.animationDuration = (8 + Math.random() * 6) + 's';
+      document.body.appendChild(e);
+      setTimeout(() => e.remove(), 15000);
+    }, 600);
+  }
+</script>
+</body>
+</html>
