@@ -207,8 +207,24 @@
       font-family: inherit; font-size: 14px;
     }
     .btn:active { transform: translate(3px, 3px); box-shadow: none; }
+    .bgm-btn {
+      position: fixed; top: 14px; right: 14px; z-index: 300;
+      width: 40px; height: 40px; border-radius: 50%;
+      background: #fff; border: 3px solid var(--ink); box-shadow: 2px 2px 0 var(--sky);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 17px; cursor: pointer; padding: 0;
+    }
+    .bgm-btn:active { transform: translate(2px, 2px); box-shadow: none; }
     .route { margin-top: 26px; text-align: left; font-size: 14.5px; }
     .route dt { font-family: 'Black Han Sans', sans-serif; color: var(--sky); margin-top: 14px; font-size: 16px; }
+    .route dd { line-height: 1.7; }
+    .line-badge {
+      display: inline-block; padding: 2px 8px; border-radius: 10px;
+      color: #fff; font-size: 12px; font-weight: 700; margin-right: 4px;
+      vertical-align: 1px;
+    }
+    .line-8  { background: #e41e6d; } /* 8호선 */
+    .line-gy { background: #61b78b; } /* 경의중앙선 */
 
     /* ---------- 제5화 계좌 ---------- */
     .acc-desc { font-size: 14.5px; color: var(--muted); margin-bottom: 24px; }
@@ -362,7 +378,13 @@
       </div>
 
       <dl class="route">
-        <dt>지하철</dt><dd>구리역 7번 출구 (8호선·경의중앙선) → 셔틀버스 이용 (예식 행사 시 운행)<br>도농역 (경의중앙선) 2번 출구 → 버스 땡큐50 → 도농고 하차<br>다산역 (8호선) 4번 출구 → 버스 79·95번 → 도농고앞 하차</dd>
+        <dt>지하철</dt>
+        <dd>
+          <span class="line-badge line-8">8호선</span><span class="line-badge line-gy">경의중앙선</span>구리역 7번 출구<br>
+          <span class="line-badge line-gy">경의중앙선</span>도농역 2번 출구 → 버스 땡큐50 → 도농고 하차<br>
+          <span class="line-badge line-8">8호선</span>다산역 4번 출구 → 버스 79·95번 → 도농고앞 하차
+        </dd>
+        <dt>셔틀버스</dt><dd>구리역 7번 출구 (예식 행사 시 운행)</dd>
         <dt>버스</dt><dd>[일반] 79, 95, 땡큐12, 땡큐50 → 도농고 하차<br>[직행] 1006 → 현대프리미엄아울렛 하차</dd>
         <dt>자가용</dt><dd>내비게이션 '다산순환로 20' 또는 '파로스컨벤션' 검색<br>건물명 검색 시 '다산현대프리미어캠퍼스몰 E동'</dd>
         <dt>주차</dt><dd>파로스컨벤션 전용 주차장 GATE2 이용 (지하 3층~4층)</dd>
@@ -438,6 +460,10 @@
 
 <div class="toast" id="toast"></div>
 
+<!-- audio/bgm_d.mp3 파일을 넣으면 재생됩니다 -->
+<audio id="bgm" src="audio/bgm_d.mp3" loop preload="auto"></audio>
+<button class="bgm-btn" id="bgm-toggle" aria-label="배경음악 재생/정지">🔇</button>
+
 <script>
   // ===== 기본 설정 =====
   const WEDDING = new Date(2027, 9, 10, 12, 0, 0); // 월은 0부터: 9 = 10월
@@ -452,6 +478,21 @@
     `https://map.naver.com/p/search/${encodeURIComponent(PLACE_NAME + ' ' + PLACE_ADDR)}`;
   document.getElementById('nav-tmap').href =
     `tmap://search?name=${encodeURIComponent(PLACE_NAME)}`;
+
+  // ===== 배경음악 (audio/bgm_d.mp3 파일을 넣으면 재생됩니다) =====
+  const bgm = document.getElementById('bgm');
+  const bgmBtn = document.getElementById('bgm-toggle');
+  function setBgmIcon() { bgmBtn.textContent = bgm.paused ? '🔇' : '🔊'; }
+  function tryPlayBgm() { bgm.play().then(setBgmIcon).catch(() => {}); }
+  tryPlayBgm(); // 대부분 브라우저는 자동재생을 막아서 바로는 안 들릴 수 있음
+  document.addEventListener('click', function firstInteract() {
+    if (bgm.paused) tryPlayBgm();
+    document.removeEventListener('click', firstInteract);
+  }, { once: true });
+  bgmBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    if (bgm.paused) tryPlayBgm(); else { bgm.pause(); setBgmIcon(); }
+  });
 
   // ===== 손님별 사진 분기 (URL 파라미터) =====
   // 기본 링크: index_d.html                -> images/1.jpg ~ images/9.jpg 사용
