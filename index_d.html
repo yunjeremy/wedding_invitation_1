@@ -9,7 +9,8 @@
   <meta property="og:title" content="신다은 ♥ 윤재림">
   <meta property="og:description" content="2027년 10월 10일 일요일 낮 12시, 두 사람의 모험이 시작됩니다">
   <meta property="og:image" content="https://yunjeremy.github.io/wedding_invitation_1/images/logo_d.jpg">
-
+  <!-- 미리보기 안 보일 시 캐시 삭제 : https://developers.kakao.com/tool/clear/og -->
+   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Dodum&display=swap" rel="stylesheet">
@@ -193,10 +194,11 @@
     .place-name { font-family: 'Black Han Sans', sans-serif; font-size: 22px; color: var(--ink); }
     .place-sub { color: var(--muted); font-size: 14px; }
     .map {
-      margin-top: 18px; width: 100%; aspect-ratio: 4 / 3; border-radius: 12px;
-      border: 3px solid var(--ink); background: #e6f4ff;
+      margin-top: 18px; width: 100%; aspect-ratio: 5 / 4; border-radius: 12px;
+      border: 3px solid var(--ink); background: #fff; overflow: hidden;
       display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 14px;
     }
+    .map img { width: 100%; height: 100%; object-fit: contain; display: block; }
     .nav-btns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
     .btn {
       display: block; text-align: center; padding: 11px 0; cursor: pointer;
@@ -348,22 +350,22 @@
     </div>
     <div class="ep-body">
       <p class="place-name">파로스컨벤션</p>
-      <p class="place-sub">경기 남양주시 다산순환로 20 다산혀대프리미어캠퍼스몰 E동 2층 001호</p>
+      <p class="place-sub">경기 남양주시 다산순환로 20 다산현대프리미어캠퍼스몰 E동 2층 001호</p>
       <p class="place-sub">Tel. 031-565-8000</p>
 
-      <!-- 다음 단계에서 카카오 지도를 연결합니다 -->
-      <div class="map" id="map">지도 영역</div>
+      <div class="map" id="map"><img src="images/map.png" alt="파로스컨벤션 약도" loading="lazy"></div>
 
       <div class="nav-btns">
-        <a class="btn" href="#" id="nav-kakao">카카오맵</a>
-        <a class="btn" href="#" id="nav-naver">네이버지도</a>
+        <a class="btn" href="#" id="nav-kakao" target="_blank" rel="noopener">카카오맵</a>
+        <a class="btn" href="#" id="nav-naver" target="_blank" rel="noopener">네이버지도</a>
         <a class="btn" href="#" id="nav-tmap">티맵</a>
       </div>
 
       <dl class="route">
-        <dt>지하철</dt><dd>○호선 ○○역 ○번 출구 도보 5분</dd>
-        <dt>버스</dt><dd>○○○, ○○○번 ○○정류장 하차</dd>
-        <dt>주차</dt><dd>건물 지하 주차장 2시간 무료</dd>
+        <dt>지하철</dt><dd>구리역 7번 출구 (8호선·경의중앙선) → 셔틀버스 이용 (예식 행사 시 운행)<br>도농역 (경의중앙선) 2번 출구 → 버스 땡큐50 → 도농고 하차<br>다산역 (8호선) 4번 출구 → 버스 79·95번 → 도농고앞 하차</dd>
+        <dt>버스</dt><dd>[일반] 79, 95, 땡큐12, 땡큐50 → 도농고 하차<br>[직행] 1006 → 현대프리미엄아울렛 하차</dd>
+        <dt>자가용</dt><dd>내비게이션 '다산순환로 20' 또는 '파로스컨벤션' 검색<br>건물명 검색 시 '다산현대프리미어캠퍼스몰 E동'</dd>
+        <dt>주차</dt><dd>파로스컨벤션 전용 주차장 GATE2 이용 (지하 3층~4층)</dd>
       </dl>
     </div>
   </section>
@@ -441,6 +443,25 @@
   const WEDDING = new Date(2027, 9, 10, 12, 0, 0); // 월은 0부터: 9 = 10월
   const GALLERY_COUNT = 9;
 
+  // ===== 오시는 길 지도 연결 =====
+  const PLACE_NAME = '파로스컨벤션';
+  const PLACE_ADDR = '경기 남양주시 다산순환로 20 다산현대프리미어캠퍼스몰 E동';
+  document.getElementById('nav-kakao').href =
+    `https://map.kakao.com/link/search/${encodeURIComponent(PLACE_NAME + ' ' + PLACE_ADDR)}`;
+  document.getElementById('nav-naver').href =
+    `https://map.naver.com/p/search/${encodeURIComponent(PLACE_NAME + ' ' + PLACE_ADDR)}`;
+  document.getElementById('nav-tmap').href =
+    `tmap://search?name=${encodeURIComponent(PLACE_NAME)}`;
+
+  // ===== 손님별 사진 분기 (URL 파라미터) =====
+  // 기본 링크: index_d.html                -> images/1.jpg ~ images/9.jpg 사용
+  // 손님별 링크: index_d.html?to=다은        -> images/guests/다은/1.jpg ~ 9.jpg 사용
+  //            index_d.html?다은            -> 위와 동일 (키 없이 값만 붙여도 인식됨)
+  // 해당 손님 폴더에 사진이 없으면(404) 자동으로 그 칸만 빠짐 (onerror)
+  const _params = new URLSearchParams(location.search);
+  const GUEST = _params.get('to') || [..._params.keys()][0] || '';
+  const GALLERY_DIR = GUEST ? `images/guests/${GUEST}/` : 'images/';
+
   // 떨어지는 이미지: images/fall/1.png ~ 9.png
   const FALL_IMAGES = Array.from({ length: 9 }, (_, i) => `images/fall/${i + 1}.png`);
   const FALL_TOTAL = 32;      // 처음에 떨어지는 개수
@@ -504,7 +525,7 @@
   const gallery = document.getElementById('gallery');
   const photos = [];
   for (let i = 1; i <= GALLERY_COUNT; i++) {
-    const src = `images/${i}.jpg`;
+    const src = `${GALLERY_DIR}${i}.jpg`;
     photos.push(src);
     gallery.insertAdjacentHTML('beforeend',
       `<div class="item" data-i="${i - 1}"><img src="${src}" alt="사진 ${i}" loading="lazy" onerror="this.remove()"></div>`);
